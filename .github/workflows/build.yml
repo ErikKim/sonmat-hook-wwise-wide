@@ -29,7 +29,7 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force pack | Out-Null
-          Copy-Item dshaptics_wwise_wide.dll, LICENSE pack/
+          Copy-Item dshaptics_wwise_wide.dll, LICENSE pack/; Copy-Item minhook/LICENSE.txt pack/MinHook-LICENSE.txt
           $v = if ("${{ github.ref }}" -like "refs/tags/v*") { "${{ github.ref_name }}".Substring(1) } else { "dev" }
           Compress-Archive -Path pack/* -DestinationPath "sonmat-hook-wwise-wide-$v.zip" -Force
           "zip: sonmat-hook-wwise-wide-$v.zip sha256 $((Get-FileHash "sonmat-hook-wwise-wide-$v.zip" -Algorithm SHA256).Hash.ToLower())"
