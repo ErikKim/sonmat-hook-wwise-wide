@@ -26,7 +26,7 @@
 #include <string>
 #include <vector>
 #include "MinHook.h"
-#include "rumble_tap.h"     // the game's own vibration requests, logged beside our event lines
+#include "rumble_note.h"     // our event lines into the game's vibration log (sonmat_rumble.dll does the vibration)
 
 using AkUInt32 = uint32_t;
 using AkUniqueID = uint32_t;
@@ -152,7 +152,6 @@ static DWORD WINAPI init(LPVOID self) {
         if (status) { fputs("MinHook init failed\n", status); fclose(status); }
         return 0;
     }
-    rumble_tap::start("C:\\Users\\Public\\dshaptics\\");      // same folder as events.log
     // Loaded while the game is still starting (the daemon was already running), the functions are found
     // but cannot be hooked yet: 2026-10-06, both "hook failed" 21 s after launch and nothing ever came.
     // So keep trying every 3 s for 5 minutes; the status file is rewritten on every attempt.
