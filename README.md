@@ -2,7 +2,7 @@
 
 A part of 손맛 햅틱 / Sonmat Haptics (`sonmat`): dshaptics_wwise_wide.dll.
 
-Hook for games with their own engine and Wwise (NieR:Automata): PostEvent by ID and SetRTPCValue found by byte patterns in sigs.txt beside the DLL (the game's own, put there by the app).
+Hook for games with their own engine and Wwise (NieR:Automata): PostEvent by ID and SetRTPCValue found by byte patterns in sigs.txt beside the DLL (the game's own, put there by the app). With `SetPosition` (and `SetListenerPosition`, the pre-2017 listener API) patterns it also writes where the event's object is (`wpos:`) and where the listener is and faces (`wlis:`), only next to events.
 
 The app does not carry this in its installer for good: it fetches the release zip that `sonmat-games/parts.json` names
 (address + SHA-256) into `<app>/parts/hook-wwise-wide/` when a game needs it (`sonmat/tools/partfetch.py`). A change here reaches
